@@ -1,8 +1,7 @@
 from contextlib import nullcontext
+from typing import ContextManager
 
 import pytest
-
-from contextlib import AbstractContextManager
 
 from jwt.utils import force_bytes, from_base64url_uint, is_ssh_key, to_base64url_uint
 
@@ -18,9 +17,7 @@ from jwt.utils import force_bytes, from_base64url_uint, is_ssh_key, to_base64url
         (-1, pytest.raises(ValueError)),
     ],
 )
-def test_to_base64url_uint(
-    inputval: int, expected: AbstractContextManager[bytes]
-) -> None:
+def test_to_base64url_uint(inputval: int, expected: ContextManager[bytes]) -> None:
     with expected as e:
         actual = to_base64url_uint(inputval)
         assert actual == e

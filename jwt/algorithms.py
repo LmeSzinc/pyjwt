@@ -12,6 +12,9 @@ from typing import (
     ClassVar,
     Literal,
     NoReturn,
+    Optional,
+    Tuple,
+    Type,
     Union,
     cast,
     get_args,
@@ -177,7 +180,7 @@ class Algorithm(ABC):
     """
 
     # pyjwt-964: Validate to ensure the key passed in was decoded to the correct cryptography key family
-    _crypto_key_types: tuple[type[AllowedKeys], ...] | None = None
+    _crypto_key_types: Optional[Tuple[Type[AllowedKeys], ...]] = None
 
     def compute_hash_digest(self, bytestr: bytes) -> bytes:
         """
@@ -419,12 +422,12 @@ if has_crypto:
         RSASSA-PKCS-v1_5 and the specified hash function.
         """
 
-        SHA256: ClassVar[type[hashes.HashAlgorithm]] = hashes.SHA256
-        SHA384: ClassVar[type[hashes.HashAlgorithm]] = hashes.SHA384
-        SHA512: ClassVar[type[hashes.HashAlgorithm]] = hashes.SHA512
+        SHA256: ClassVar[Type[hashes.HashAlgorithm]] = hashes.SHA256
+        SHA384: ClassVar[Type[hashes.HashAlgorithm]] = hashes.SHA384
+        SHA512: ClassVar[Type[hashes.HashAlgorithm]] = hashes.SHA512
 
         _crypto_key_types = cast(
-            tuple[type[AllowedKeys], ...],
+            Tuple[Type[AllowedKeys], ...],
             get_args(Union[RSAPrivateKey, RSAPublicKey]),
         )
         _MIN_KEY_SIZE: ClassVar[int] = 2048
@@ -610,12 +613,12 @@ if has_crypto:
         ECDSA and the specified hash function
         """
 
-        SHA256: ClassVar[type[hashes.HashAlgorithm]] = hashes.SHA256
-        SHA384: ClassVar[type[hashes.HashAlgorithm]] = hashes.SHA384
-        SHA512: ClassVar[type[hashes.HashAlgorithm]] = hashes.SHA512
+        SHA256: ClassVar[Type[hashes.HashAlgorithm]] = hashes.SHA256
+        SHA384: ClassVar[Type[hashes.HashAlgorithm]] = hashes.SHA384
+        SHA512: ClassVar[Type[hashes.HashAlgorithm]] = hashes.SHA512
 
         _crypto_key_types = cast(
-            tuple[type[AllowedKeys], ...],
+            Tuple[Type[AllowedKeys], ...],
             get_args(Union[EllipticCurvePrivateKey, EllipticCurvePublicKey]),
         )
 
@@ -858,7 +861,7 @@ if has_crypto:
         """
 
         _crypto_key_types = cast(
-            tuple[type[AllowedKeys], ...],
+            Tuple[Type[AllowedKeys], ...],
             get_args(
                 Union[
                     Ed25519PrivateKey,

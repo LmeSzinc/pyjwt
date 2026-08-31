@@ -23,6 +23,7 @@ jobs:
       matrix:
         platform: ["ubuntu-latest", "windows-latest"]
         python-version:
+          - "3.8"
           - "3.9"
           - "3.10"
           - "3.11"
@@ -100,7 +101,7 @@ jobs:
     strategy:
       matrix:
         os: ["ubuntu-latest", "windows-latest", "macos-latest"]
-        python-version: ["3.9", "3.13"]
+        python-version: ["3.8", "3.9", "3.13"]
 
     name: "Verify dev env (Python ${{ matrix.python-version }}, ${{ matrix.os }})"
     runs-on: "${{ matrix.os }}"

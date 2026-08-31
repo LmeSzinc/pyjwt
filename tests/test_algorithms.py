@@ -1,6 +1,6 @@
 import base64
 import json
-from typing import Union, cast
+from typing import Dict, Union, cast
 
 import pytest
 
@@ -1061,8 +1061,8 @@ class TestOKPAlgorithms:
         with open(key_path("jwk_okp_pub_Ed25519.json")) as keyfile:
             pub_key_1 = cast(Ed25519PublicKey, algo.from_jwk(keyfile.read()))
 
-        pub_jwk: Union[dict[str, object], str]
-        pri_jwk: Union[dict[str, object], str]
+        pub_jwk: Union[Dict[str, object], str]
+        pri_jwk: Union[Dict[str, object], str]
         if as_dict:
             pub_jwk = algo.to_jwk(pub_key_1, as_dict=True)
             pri_jwk = algo.to_jwk(priv_key_1, as_dict=True)
@@ -1179,8 +1179,8 @@ class TestOKPAlgorithms:
         with open(key_path("jwk_okp_pub_Ed448.json")) as keyfile:
             pub_key_1 = cast(Ed448PublicKey, algo.from_jwk(keyfile.read()))
 
-        pub_jwk: Union[dict[str, object], str]
-        pri_jwk: Union[dict[str, object], str]
+        pub_jwk: Union[Dict[str, object], str]
+        pri_jwk: Union[Dict[str, object], str]
         if as_dict:
             pub_jwk = algo.to_jwk(pub_key_1, as_dict=True)
             pri_jwk = algo.to_jwk(priv_key_1, as_dict=True)

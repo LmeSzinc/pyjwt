@@ -3,7 +3,7 @@ import io
 import json
 import ssl
 import time
-from collections.abc import Iterator
+from typing import Iterator, Tuple
 from unittest import mock
 from urllib.error import HTTPError, URLError
 from email.message import Message
@@ -90,7 +90,7 @@ def mocked_timeout() -> Iterator[mock.Mock]:
 
 
 @contextlib.contextmanager
-def mocked_http_error_response() -> Iterator[tuple[mock.Mock, HTTPError]]:
+def mocked_http_error_response() -> Iterator[Tuple[mock.Mock, HTTPError]]:
     with mock.patch("urllib.request.urlopen") as urlopen_mock:
         http_error = HTTPError(
             url="https://example.com",

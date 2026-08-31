@@ -4,7 +4,7 @@ import binascii
 import json
 import warnings
 from collections.abc import Sequence
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, Set
 
 from .algorithms import (
     Algorithm,
@@ -417,7 +417,7 @@ class PyJWS:
             raise InvalidSignatureError("Signature verification failed")
 
     # Extensions that PyJWT actually understands and supports
-    _supported_crit: set[str] = {"b64"}
+    _supported_crit: Set[str] = {"b64"}
 
     def _validate_headers(
         self, headers: dict[str, Any], *, encoding: bool = False

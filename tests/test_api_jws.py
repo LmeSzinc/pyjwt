@@ -852,10 +852,10 @@ class TestJWS:
         )
 
         header, *_ = token.split(".")
-        header = json.loads(base64url_decode(header))
+        header_obj = json.loads(base64url_decode(header))
 
-        assert "some_decimal" in header
-        assert header["some_decimal"] == "it worked"
+        assert "some_decimal" in header_obj
+        assert header_obj["some_decimal"] == "it worked"
 
     def test_encode_headers_parameter_adds_headers(
         self, jws: PyJWS, payload: bytes

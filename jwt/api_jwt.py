@@ -6,7 +6,7 @@ import warnings
 from calendar import timegm
 from collections.abc import Container, Iterable, Sequence
 from datetime import datetime, timedelta, timezone
-from typing import TYPE_CHECKING, Any, Union, cast
+from typing import TYPE_CHECKING, Any, Dict, Union, cast
 
 from .api_jws import PyJWS, _ALGORITHM_UNSET, _jws_global_obj
 from .exceptions import (
@@ -377,7 +377,7 @@ class PyJWT:
             issuer=issuer,
             leeway=leeway,
         )
-        return cast(dict[str, Any], decoded["payload"])
+        return cast(Dict[str, Any], decoded["payload"])
 
     def _validate_claims(
         self,

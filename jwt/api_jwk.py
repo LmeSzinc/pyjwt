@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 import time
 from collections.abc import Iterator
-from typing import Any
+from typing import Any, Optional, cast
 
 from .algorithms import get_default_algorithms, has_crypto, requires_cryptography
 from .exceptions import (
@@ -113,7 +113,7 @@ class PyJWK:
 
         :rtype: str or None
         """
-        return self._jwk_data.get("kty", None)
+        return cast(Optional[str], self._jwk_data.get("kty", None))
 
     @property
     def key_id(self) -> str | None:
@@ -121,7 +121,7 @@ class PyJWK:
 
         :rtype: str or None
         """
-        return self._jwk_data.get("kid", None)
+        return cast(Optional[str], self._jwk_data.get("kid", None))
 
     @property
     def public_key_use(self) -> str | None:
@@ -129,7 +129,7 @@ class PyJWK:
 
         :rtype: str or None
         """
-        return self._jwk_data.get("use", None)
+        return cast(Optional[str], self._jwk_data.get("use", None))
 
 
 class PyJWKSet:

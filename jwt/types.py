@@ -1,6 +1,6 @@
-from typing import Any, Callable, TypedDict
+from typing import Any, Callable, Dict, List, TypedDict
 
-JWKDict = dict[str, Any]
+JWKDict = Dict[str, Any]
 
 HashlibHash = Callable[..., Any]
 
@@ -29,7 +29,7 @@ class Options(TypedDict, total=False):
 
     verify_signature: bool
     """Default: ``True``. Verify the JWT cryptographic signature."""
-    require: list[str]
+    require: List[str]
     """Default: ``[]``. List of claims that must be present.
           Example: ``require=["exp", "iat", "nbf"]``.
           **Only verifies that the claims exists**. Does not verify that the claims are valid."""
@@ -57,7 +57,7 @@ class Options(TypedDict, total=False):
 # required _every_ value to be there; Options doesn't require any
 class FullOptions(TypedDict):
     verify_signature: bool
-    require: list[str]
+    require: List[str]
     strict_aud: bool
     verify_aud: bool
     verify_exp: bool
