@@ -120,6 +120,7 @@ module = [
 addopts = "-ra"
 filterwarnings = [
     "error",
+    "ignore:Python 3.8 is no longer supported.*:Warning",
     "ignore::jwt.warnings.InsecureKeyLengthWarning",
 ]
 testpaths = [
